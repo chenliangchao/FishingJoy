@@ -30,3 +30,14 @@
 *.exe
 *.out
 *.app
+
+proj.android
+proj.blackberry
+proj.ios
+proj.linux
+proj.mac
+proj.marmalade
+proj.tizen
+proj.winrt
+proj.wp8
+proj.wp8-xaml

@@ -11,6 +11,7 @@
 <XPD:BODY>
 <XPD:OBJ name="DocumentElement" type="UMLProject" guid="XndybzOLqESPADY1shNfFAAA">
 <XPD:ATTR name="Title" type="string">FishingJoy</XPD:ATTR>
+<XPD:ATTR name="Author" type="string">chenliangchao</XPD:ATTR>
 <XPD:ATTR name="#OwnedElements" type="integer">5</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLModel" guid="zdPxHthye0i31l6GcYoYrwAA">
 <XPD:ATTR name="Name" type="string">Use Case Model</XPD:ATTR>
@@ -113,9 +114,8 @@
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="GGyTmzLsYUKMjVPOdMNPQwAA">
 <XPD:ATTR name="Name" type="string">StaticData</XPD:ATTR>
 <XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">StaticData</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">StaticData*</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">/XQGS62T5Em7MaNmcDnMLwAA</XPD:REF>
-<XPD:REF name="Type_">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:OBJ name="Operations[2]" type="UMLOperation" guid="e83Z6rrAZ0yBYA/jP0EwfgAA">
@@ -135,8 +135,8 @@
 <XPD:REF name="Owner">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="5uMkFvDXMEiCxkuBBkCPBgAA">
-<XPD:ATTR name="Name" type="string">key</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">std::string</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">&amp;key</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">const std::string</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">ZtShQ5gU0E+G3zS0Q7V+dAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="ueJJ5pAdl0i1FbV0GdVH/AAA">
@@ -151,14 +151,14 @@
 <XPD:REF name="Owner">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="4cUW4XeM10mKBs/oCik0bgAA">
-<XPD:ATTR name="Name" type="string">key</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">std::string</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">&amp;key</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">const std::string</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">ndZ33MgrUU2a63UglkyL/gAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="HWXGRqtCuU6rwF5CEMeDwQAA">
 <XPD:ATTR name="Name" type="string">char</XPD:ATTR>
 <XPD:ATTR name="DirectionKind" type="UMLParameterDirectionKind">pdkReturn</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">char</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">const char*</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">ndZ33MgrUU2a63UglkyL/gAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -167,8 +167,8 @@
 <XPD:REF name="Owner">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="W/mbUtFyOk6grkemM0FnBwAA">
-<XPD:ATTR name="Name" type="string">key</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">std::string</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">&amp;key</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">const std::string</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">4GhE1FTfN0uk3wP+fVjS7AAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="qRWdcQjqCUy6o8VGziVPwQAA">
@@ -183,8 +183,8 @@
 <XPD:REF name="Owner">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="Cp1mShwUC0+abI2EaqVgngAA">
-<XPD:ATTR name="Name" type="string">key</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">std::string</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">&amp;key</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">const std::string</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">liy08YZxKECIEfoT+KMm4gAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="Oyppq9BYH0KkhTgZuopizgAA">
@@ -199,8 +199,8 @@
 <XPD:REF name="Owner">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="cHEJBzyf2k2MC/STqkwp+AAA">
-<XPD:ATTR name="Name" type="string">key</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">std::string</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">&amp;key</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">const std::string</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">ZCSennfy80GafQkYWttR8wAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="IPq70cTlfEOoZvRRYjh49wAA">
@@ -215,8 +215,8 @@
 <XPD:REF name="Owner">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="Er1x+h09wkiU5z8pXpsNjAAA">
-<XPD:ATTR name="Name" type="string">key</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">std::string</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">&amp;key</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">const std::string</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">WCjt++/9h0iwds3+H0GQoQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="KocgvT87O0y7ygUL0qB/qgAA">
@@ -231,8 +231,8 @@
 <XPD:REF name="Owner">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="FtsQ5nrPcUyQMf5i7v+rZgAA">
-<XPD:ATTR name="Name" type="string">key</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">std::string</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">&amp;key</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">const std::string</XPD:ATTR>
 <XPD:REF name="BehavioralFeature">2bJkSejY10qDUnCiDbu5swAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Parameters[1]" type="UMLParameter" guid="qwg7fc6hskanpI9yQp3pXQAA">
@@ -261,13 +261,11 @@
 <XPD:REF name="BehavioralFeature">adZZI8O32USOm0KdnxU78AAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#TypedParameters" type="integer">1</XPD:ATTR>
-<XPD:REF name="TypedParameters[0]">GGyTmzLsYUKMjVPOdMNPQwAA</XPD:REF>
 <XPD:ATTR name="#Attributes" type="integer">2</XPD:ATTR>
 <XPD:OBJ name="Attributes[0]" type="UMLAttribute" guid="YdZofZGFNkebCmKP2M3oXQAA">
 <XPD:ATTR name="Name" type="string">_dictionary</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkProtected</XPD:ATTR>
-<XPD:ATTR name="TypeExpression" type="string">cocos2d::CCDictionary</XPD:ATTR>
+<XPD:ATTR name="TypeExpression" type="string">cocos2d::CCDictionary*</XPD:ATTR>
 <XPD:REF name="Owner">jBTpoPe3gEm3NBjhegp92QAA</XPD:REF>
 <XPD:ATTR name="#TaggedValues" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="TaggedValues[0]" type="TaggedValue" guid="INUkP1rGzka1iXuE5f8bawAA">

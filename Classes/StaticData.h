@@ -16,13 +16,11 @@
 #include<string>
 #include "cocos2d.h"
 using namespace std;
-using cocos2d::CCDictionary;
-using cocos2d::CCPointFromString;
-using cocos2d::CCRectFromString;
-using cocos2d::CCSizeFromString;
+USING_NS_CC;
 
 
-class StaticData {
+class StaticData:
+	public CCObject {
 public:
 	static StaticData* sharedStaticData();
 	static void purge();

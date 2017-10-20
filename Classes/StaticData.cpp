@@ -25,8 +25,7 @@ StaticData* StaticData::sharedStaticData()
 
 void StaticData::purge() 
 {
-	//error: class "Static" 没有成员 "release"
-	//CC_SAFE_RELEASE_NULL(g_sharedStaticData);
+	CC_SAFE_RELEASE_NULL(g_sharedStaticData);
 }
 
 int StaticData::intValueFromKey(const std::string &key) 

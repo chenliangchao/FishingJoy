@@ -43,3 +43,5 @@ proj.wp8
 proj.wp8-xaml
 Debug.win32
 .vs
+ipch
+.sdf

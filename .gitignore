@@ -45,3 +45,5 @@ Debug.win32
 .vs
 ipch
 .sdf
+.opensdf
+enc_temp_folder

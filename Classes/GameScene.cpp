@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "CannonLayer.h"
 
 GameScene::GameScene()
 {
@@ -21,6 +22,8 @@ bool GameScene::init()
 		_fishLayer = FishLayer::create();
 		CC_BREAK_IF(!_fishLayer);
 		addChild(_fishLayer);
+		CannonLayer* cannonLayer = CannonLayer::create();
+		addChild(cannonLayer);
 		return true;
 	} while (0);
 	return false;
@@ -35,6 +38,13 @@ void GameScene::preloadResources(void)
 	spriteFrameCache->addSpriteFramesWithFile("FishActor-Shark-ipadhd.plist");		//同上
 	spriteFrameCache->addSpriteFramesWithFile("FishActor-Small-ipadhd.plist");		//同上
 	spriteFrameCache->addSpriteFramesWithFile("FishActor-Mid-ipadhd.plist");			//同上
+	spriteFrameCache->addSpriteFramesWithFile("cannon-ipadhd.plist");
+	spriteFrameCache->addSpriteFramesWithFile("Item-chaojiwuqi-ipadhd.plist");
+
+	CCTextureCache *textureCache = CCTextureCache::sharedTextureCache();
+	textureCache->addImage("ui_button_63-ipadhd.png");
+	textureCache->addImage("ui_button_65-ipadhd.png");
+
 	char str[][50] = { "SmallFish", "Croaker", "AngelFish", "Amphiprion", "PufferS", 
 		"Bream", "Porgy", "Chelonian", "Lantern", "Ray", "Shark", "GoldenTrout", "GShark", 
 		"GMarlinsFish", "GrouperFish", "JadePerch", "MarlinsFish", "PufferB" };

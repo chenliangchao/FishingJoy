@@ -75,3 +75,37 @@ Weapon::~Weapon(void)
 	CC_SAFE_RELEASE(_bullets);
 	CC_SAFE_RELEASE(_fishNets);
 }
+
+void Weapon::aimAt(CCPoint target)
+{
+	_cannon->aimAt(target);
+}
+
+void Weapon::shootTo(CCPoint target)
+{
+	Bullet* bullet= getBulletToShoot();
+	if(!bullet) return;
+	CCPoint pointWorldSpace = getParent()->convertToWorldSpace(getPosition());
+	float distance = ccpDistance(target, pointWorldSpace);
+	if(distance > _cannon->getFireRange())
+	{
+		CCPoint normal = ccpNormalize(ccpSub(target, pointWorldSpace));
+		CCPoint mult = ccpMult(normal, _cannon->getFireRange());
+		target = ccpAdd(pointWorldSpace, mult);
+	}
+	bullet->flyTo(target, _cannon->getType());
+}
+
+Bullet* Weapon::getBulletToShoot()
+{
+	CCObject* obj;
+	CCARRAY_FOREACH(_bullets, obj)
+	{
+		Bullet* bullet = (Bullet*)obj;
+		if(!bullet->isVisible())
+		{
+			return bullet;
+		}
+	}
+	return NULL;
+}

@@ -40,13 +40,15 @@ public:
 	CCPoint pointFromKey(const string& key);
 	CCRect rectFromKey(const string& key);
 	CCSize sizeFromKey(const string& key);
+
 protected:
 	CCDictionary* _dictionary;
 	string _staticFileName;
 	bool init();
+
 private:
-	~StaticData();
 	StaticData();
+	~StaticData();
 };
 
 #endif  //_STATICDATA_H

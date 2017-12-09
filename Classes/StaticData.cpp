@@ -70,7 +70,7 @@ bool StaticData::init()
 {
   //创建出词典对象
 	_dictionary = CCDictionary::createWithContentsOfFile(_staticFileName.c_str());
-	_dictionary->retain();
+	CC_SAFE_RETAIN(_dictionary);
 
 	return true;
 }
@@ -84,4 +84,3 @@ StaticData::StaticData()
 {
 	_staticFileName = STATIC_DATA_FILENAME;
 }
-

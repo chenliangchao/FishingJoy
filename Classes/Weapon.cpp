@@ -1,6 +1,6 @@
 #include "Weapon.h"
 
-#define BULLET_COUNT 1
+#define BULLET_COUNT 5
 
 Weapon* Weapon::create(CannonType type)
 {
@@ -75,7 +75,7 @@ CannonType Weapon::getCannonType()
 
 void Weapon::changeCannon(CannonOperate operate)
 {
-	int type = (int) _cannon->getType();
+	int type = (int)_cannon->getType();
 	type += operate;
 	_cannon->setType((CannonType)type);
 }
@@ -92,10 +92,10 @@ void Weapon::aimAt(CCPoint target)
 	_cannon->aimAt(target);
 }
 
-void Weapon::shootTo(CCPoint target)
+bool Weapon::shootTo(CCPoint target)
 {
 	Bullet* bullet= getBulletToShoot();
-	if(!bullet) return;
+	if(!bullet) return false;
 	CCPoint pointWorldSpace = getParent()->convertToWorldSpace(getPosition());
 	float distance = ccpDistance(target, pointWorldSpace);
 	if(distance > _cannon->getFireRange())
@@ -105,6 +105,7 @@ void Weapon::shootTo(CCPoint target)
 		target = ccpAdd(pointWorldSpace, mult);
 	}
 	bullet->flyTo(target, _cannon->getType());
+	return true;
 }
 
 Bullet* Weapon::getBulletToShoot()

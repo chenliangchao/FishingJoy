@@ -63,7 +63,7 @@ void Cannon::setType(CannonType var)
 		var = k_Cannon_Type_1;
 	}
 	removeChildByTag(_type);
-	CCSprite* sprite = (CCSprite*) _cannonSprites->objectAtIndex(var);
+	CCSprite* sprite = (CCSprite*)_cannonSprites->objectAtIndex(var);
 	addChild(sprite,0,var);
 	_type = var;
 }

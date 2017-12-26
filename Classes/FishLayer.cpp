@@ -34,7 +34,7 @@ bool FishLayer::init()
 }
 
 void FishLayer::addFish(float delta)
-	{
+{
 		int addToCount = CCRANDOM_0_1() * 5 + 1;
 		int count = 0;
 		CCObject* obj;
@@ -84,7 +84,6 @@ void FishLayer::resetFish(Fish* fish)
 		endX = winSize.width + fishSize.width / 2;
 		fish -> setRotation(180);
 	}
-
 	endY = CCRANDOM_0_1() * (winSize.height - fishSize.height) + fishSize.height / 2;
 	startY = CCRANDOM_0_1() * (winSize.height - fishSize.height) + fishSize.height / 2;
 	addChild(fish);

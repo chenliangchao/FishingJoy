@@ -4,7 +4,7 @@ enum{
 };
 Counter* Counter::create(CCArray* presenters, int digit/* = 0 */)
 {
-	CCAssert(digit>=0 && digit<=10, "金币数字只能为0至9之间的数字");
+	CCAssert(digit>=0 && digit<=10, "金币为0-9");
     Counter *counter = new Counter;
 	if (counter && counter->init(presenters,digit) )
 	{   

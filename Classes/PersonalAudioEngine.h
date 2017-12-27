@@ -5,12 +5,12 @@
 USING_NS_CC;
 using namespace CocosDenshion;
 
-/*typedef enum{
+typedef enum{
 	kEffectSwichCannon = 0,
 	kEffectShoot,
 	kEffectFishNet,
 	kEffectCoins
-}EffectType;*/
+}EffectType;
 
 class PersonalAudioEngine :
 	public SimpleAudioEngine
@@ -22,12 +22,19 @@ public:
 	
 	bool init();
 	
-	//调节背景音乐的声音大小
-	void setBackgroundMusicVolume(float volume);
+	//是否开启背景音乐
+	void setBackgroundMusic(bool isOn);
 	
-	//调节音效的大小
-	void setEffectsVolume(float volume);
-	
+	//是否开启音效
+	//void setEffects(bool isOn);
+
+	void playEffects(EffectType type);
+
 	void purge();
-	
+
+	CC_SYNTHESIZE(unsigned int, _bgMusicId, BgMusicId);
+	CC_SYNTHESIZE(unsigned int, _netSoundId, NetSoundId);
+	CC_SYNTHESIZE(unsigned int, _fireSoundId, FireSoundId);
+	CC_SYNTHESIZE(unsigned int, _btnSoundId, BtnSoundId);
+
 };

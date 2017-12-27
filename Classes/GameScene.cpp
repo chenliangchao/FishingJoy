@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "FishingJoyData.h"
 #include "PersonalAudioEngine.h"
+#include "GameMenuLayer.h"
 
 GameScene::GameScene()
 {
@@ -41,7 +42,9 @@ bool GameScene::init()
 		_panelLayer->getGoldCounter()->setNumber(gold);
 
 		this->scheduleUpdate();
-		PersonalAudioEngine::sharedEngine()->playBackgroundMusic("music_1.mp3");
+		
+		//循环播放背景音乐
+		PersonalAudioEngine::sharedEngine()->playBackgroundMusic("music_1.mp3", true);
 		return true;
 	} while (0);
 	return false;
@@ -64,7 +67,7 @@ void GameScene::cannonShootTo(CCPoint target)
 	int cost = (type+1) * 1;
 	int currentGold = FishingJoyData::sharedFishingJoyData()->getGold();
 	if(currentGold >= cost && _cannonLayer->shootTo(target)){
-		PersonalAudioEngine::sharedEngine()->playEffect("bgm_fire.aif");
+		PersonalAudioEngine::sharedEngine()->playEffects(kEffectShoot);
 		this->alterGold(-cost);
 	}
 }
@@ -117,7 +120,7 @@ void GameScene::fishWillBeCaught(Fish* fish)
 	if(CCRANDOM_0_1() < 1.1)
 	{
 		fish->beCaught();
-		PersonalAudioEngine::sharedEngine()->playEffect("bgm_net.mp3");
+		PersonalAudioEngine::sharedEngine()->playEffects(kEffectFishNet);
 		int reward = (fishType+1)*10;
 		this->alterGold(reward);
 	}
@@ -152,11 +155,16 @@ void GameScene::operateAllSchedulerAndActions(CCNode* node, OperateFlag flag)
 		default:
 			break;
 		}
-		CCArray* array = node->getChildren();
-		if(array != NULL && array->count()>0){
-			CCObject* iterator;
-			CCARRAY_FOREACH(array, iterator){
-				CCNode* child = (CCNode*)iterator;
+
+		CCArray* children = node->getChildren();
+
+		if(children != NULL && children->count()>0){
+			
+			CCObject* item;
+
+			//遍历node的所有孩子节点
+			CCARRAY_FOREACH(children, item){
+				CCNode* child = (CCNode*)item;
 				this->operateAllSchedulerAndActions(child, flag);
 			}
 		}
@@ -166,18 +174,54 @@ void GameScene::operateAllSchedulerAndActions(CCNode* node, OperateFlag flag)
 void GameScene::pause()
 {
 	PersonalAudioEngine::sharedEngine()->pauseBackgroundMusic();
-	PersonalAudioEngine::sharedEngine()->playEffect("bgm_button.aif");
+
+	PersonalAudioEngine::sharedEngine()->playEffects(kEffectSwichCannon);
+
 	this->operateAllSchedulerAndActions(this, k_Operate_Pause);
+
 	_touchLayer->setTouchEnabled(false);
+
+	_panelLayer->getMenu()->setTouchEnabled(false);
+	
 	this->addChild(_menuLayer);
 }
 
 void GameScene::resume()
 {
 	this->operateAllSchedulerAndActions(this, k_Operate_Resume);
-	PersonalAudioEngine::sharedEngine()->resumeBackgroundMusic();
+
+	PersonalAudioEngine::sharedEngine()->setBackgroundMusic(!FishingJoyData::sharedFishingJoyData()->getMusic());
+
 	this->removeChild(_menuLayer, false);
+	
 	_touchLayer->setTouchEnabled(true);
+
+	_panelLayer->getMenu()->setTouchEnabled(true);
+}
+
+void GameScene::music()
+{
+    PersonalAudioEngine::sharedEngine()->setBackgroundMusic(FishingJoyData::sharedFishingJoyData()->getMusic());
+}
+
+void GameScene::reset()
+{
+	//重设游戏，玩家变成初学者，金币恢复为默认值
+	FishingJoyData::sharedFishingJoyData()->reset();
+
+	_panelLayer->getGoldCounter()->setNumber(FishingJoyData::sharedFishingJoyData()->getGold());
+
+	//设置炮台为1级
+	this->_cannonLayer->getWeapon()->getCannon()->setType(k_Cannon_Type_1);
+	
+	//回到游戏
+	this->resume();
+}
+
+void GameScene::toMainMenu()
+{
+	PersonalAudioEngine::sharedEngine()->pauseBackgroundMusic();
+	CCDirector::sharedDirector()->replaceScene(GameMenuLayer::scene());
 }
 
 void GameScene::alterGold(int delta)

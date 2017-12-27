@@ -19,8 +19,8 @@ public:
 	//getxxx/setxxx
 	CC_SYNTHESIZE(int, _gold, Gold);
 	CC_SYNTHESIZE(bool, _isBeginer, IsBeginer);
-	CC_SYNTHESIZE(float, _musicVolume, MusicVolume);
-	CC_SYNTHESIZE(float, _soundVolume, SoundVolume);
+	CC_SYNTHESIZE(bool, _music, Music);
+	CC_SYNTHESIZE(bool, _sound, Sound);
 
 	void alterGold(int golds);
 

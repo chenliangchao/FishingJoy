@@ -33,15 +33,20 @@ bool PanelLayer::init()
 	this->addChild(_scheduleLabel);
 	_scheduleLabel->setPosition(ccp(500, 20));
 
-	CCMenuItemSprite* pause = CCMenuItemSprite::create(CCSprite::create("button_other_003-ipadhd.png"), 
-							CCSprite::create("button_other_004-ipadhd.png"),
-							this, menu_selector(PanelLayer::pause));
+	//´´½¨ÔÝÍ£°´Å¥
+	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("UI_GameMenuLayer-ipadhd.plist");
 
-	CCMenu* menu = CCMenu::create(pause, NULL);
-	this->addChild(menu);
+	CCSprite* stopSprite = CCSprite::createWithSpriteFrameName("ui_button_02.png");
+
+	CCMenuItemSprite* pause = CCMenuItemSprite::create(stopSprite, 
+		stopSprite,
+		this, menu_selector(PanelLayer::pause));
+
+	_menu = CCMenu::create(pause, NULL);
+	this->addChild(_menu);
 
 	CCSize pauseSize = pause->getContentSize();
-	menu->setPosition(CCPointMake(winSize.width-pauseSize.width*0.5, pauseSize.height*0.5));
+	_menu->setPosition(CCPointMake(winSize.width-pauseSize.width, winSize.height - pauseSize.height));
 
     return true;
 }

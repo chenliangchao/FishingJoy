@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include "PersonalAudioEngine.h"
 #include "FishingJoyData.h"
+#include "Cannon.h"
 
 LoadingLayer::LoadingLayer(void)
 {
@@ -37,6 +38,8 @@ bool LoadingLayer::init()
 	CCSprite* background = CCSprite::create("loading_1-ipadhd.png");
 	background->setPosition(CCPointMake(winSize.width*0.5, winSize.height*0.6));
 	this->addChild(background);
+
+	this->_isLoaded = false;
 
 	this->initProgressBar();
 
@@ -83,12 +86,18 @@ void LoadingLayer::progressPercentageSetter(float percentage)
 void LoadingLayer::loadingFinished()
 {
 	CCScene* gameScene = GameScene::create();
-	
 	CCDirector::sharedDirector()->replaceScene(gameScene);
 }
 
 void LoadingLayer::cacheInit(float delta)
 {
+	if(this->_isLoaded)
+	{
+		_progressBar->setSpeed(200.0f);
+		_progressBar->progressTo(100.0f);
+		return;
+	}
+
 	CCSpriteFrameCache* spriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
 
 	//总共需要加载33个
@@ -98,7 +107,7 @@ void LoadingLayer::cacheInit(float delta)
 	float ratio = 3.3f;
 
 	//修改以下plist文件， 删除key中的中文， 否则spriteFrameByName函数无法找到Frame，将返回NULL
-	//例如：//修改metadata->realTextureFileName->FishActor-Large-ipadhdhd.png, textureFileName->FishActor-Large-ipadhd.png
+	//例如：修改metadata->realTextureFileName->FishActor-Large-ipadhdhd.png, textureFileName->FishActor-Large-ipadhd.png
 	char fishPlists[][50] = { "FishActor-Large-ipadhd.plist", "FishActor-Marlin-ipadhd.plist", 
 		"FishActor-Shark-ipadhd.plist", "FishActor-Small-ipadhd.plist", "FishActor-Mid-ipadhd.plist", 
 		"cannon-ipadhd.plist", "Item-chaojiwuqi-ipadhd.plist"};
@@ -147,8 +156,12 @@ void LoadingLayer::cacheInit(float delta)
 		_progressBar->progressTo(ratio*(progressStart++));
 	}
 
+	Cannon::create();
+
 	PersonalAudioEngine::sharedEngine();
-	FishingJoyData::sharedFishingJoyData();
+	FishingJoyData::sharedFishingJoyData()->setMusic(true);
+
+	this->_isLoaded = true;
 
 	_progressBar->progressTo(100.0f);
 }

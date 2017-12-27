@@ -15,7 +15,12 @@ bool CannonLayer::init()
 	{
 		return false;
 	}
-	_weapon = Weapon::create((CannonType)0);
+	// release版本bug
+	// 炮台初始化类型设置为0，炮台类型1精灵图无法载出(资源已加载)
+
+	// 解决方法：
+	// 设置为非法的值，setType判断后设置为0, 可以载出类型1炮台
+	_weapon = Weapon::create(k_Cannon_Invalid);
 	this->addChild(_weapon,1);
 	CCSize winSize=CCDirector::sharedDirector()->getWinSize();
 	_weapon->setPosition(ccp(winSize.width/2 - 18, 0));
@@ -37,7 +42,7 @@ bool CannonLayer::init()
 	return true;
 }
 
-void CannonLayer::switchCannonCallback(cocos2d::CCObject* sender)
+void CannonLayer::switchCannonCallback(CCObject* sender)
 {
 	CannonOperate operate = k_Cannon_Operate_Up;
 	if((CCMenuItemImage*)sender == _subMenuItem)
@@ -45,7 +50,7 @@ void CannonLayer::switchCannonCallback(cocos2d::CCObject* sender)
 		operate = k_Cannon_Operate_Down;
 	}
 	_weapon->changeCannon(operate);
-	PersonalAudioEngine::sharedEngine()->playEffect("bgm_button.aif");
+	PersonalAudioEngine::sharedEngine()->playEffects((EffectType)0);
 }
 
 void CannonLayer::aimAt(CCPoint target)

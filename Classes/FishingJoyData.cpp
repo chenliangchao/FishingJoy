@@ -3,8 +3,8 @@
 USING_NS_CC;
 
 #define IS_BEGINER "_isBeginer"
-#define MUSIC "_musicVolume"
-#define SOUND "_soundVolume"
+#define MUSIC "_music"
+#define SOUND "_sound"
 #define GOLD "_gold"
 
 static FishingJoyData* _sharedFishingJoyData = NULL;
@@ -35,25 +35,24 @@ bool FishingJoyData::init()
 	if (_isBeginer)
 	{
 		this -> reset();
-		this -> flush();
-		this -> setIsBeginer(false);
 	}
 	else
 	{
 		CCUserDefault* userDefault = CCUserDefault::sharedUserDefault();
 		this -> setGold(userDefault -> getIntegerForKey(GOLD));
-		this -> setMusicVolume(userDefault -> getFloatForKey(MUSIC));
-		this -> setSoundVolume(userDefault -> getFloatForKey(SOUND));
+		this -> setMusic(userDefault -> getBoolForKey(MUSIC, true));
+		this -> setSound(userDefault -> getBoolForKey(SOUND, true));
 	}
 	return true;
 }
 
 void FishingJoyData::reset()
 {
-	this -> setMusicVolume(0.8f);
-	this -> setSoundVolume(0.8f);
+	this -> setMusic(true);
+	this -> setSound(true);
 	this -> setGold(200);
 	this -> setIsBeginer(false);
+	this -> flush();
 }
 
 void FishingJoyData::flush()
@@ -62,8 +61,8 @@ void FishingJoyData::flush()
 	
 	userDefault -> setBoolForKey(IS_BEGINER, _isBeginer);
 	userDefault -> setIntegerForKey(GOLD, _gold);
-	userDefault -> getFloatForKey(MUSIC, _musicVolume);
-	userDefault -> getFloatForKey(SOUND, _soundVolume);
+	userDefault -> getBoolForKey(MUSIC, _music);
+	userDefault -> getBoolForKey(SOUND, _sound);
 
 	userDefault -> flush();
 }

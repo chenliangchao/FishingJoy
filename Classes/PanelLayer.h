@@ -14,7 +14,9 @@ public:
 	~PanelLayer(void);
 
     CREATE_FUNC(PanelLayer)
-    CC_SYNTHESIZE_READONLY(GoldCounterLayer *, _goldCounter, GoldCounter)
+    CC_SYNTHESIZE_READONLY(GoldCounterLayer *, _goldCounter, GoldCounter);
+
+	CC_SYNTHESIZE_READONLY(CCMenu*, _menu, Menu);
 
 	//Ðéº¯ÊýÊµÏÖ
 	void scheduleTimeUp();

@@ -40,7 +40,7 @@ bool Cannon::init(CannonType type)
 		cannonSprite->setAnchorPoint(ccp(0.5,0.18));
 	}
 	CC_SAFE_RETAIN(_cannonSprites);
-	setType(type);
+	this->setType(type);
 	return true;
 }
 
@@ -58,13 +58,14 @@ void Cannon::setType(CannonType var)
 	if(var < k_Cannon_Type_1)
 	{
 		var = (CannonType)(k_Cannon_Count-1);
-	}else if(var >= k_Cannon_Count)
+	}
+	else if(var >= k_Cannon_Count)
 	{
 		var = k_Cannon_Type_1;
 	}
-	removeChildByTag(_type);
+	this->removeChildByTag(_type);
 	CCSprite* sprite = (CCSprite*)_cannonSprites->objectAtIndex(var);
-	addChild(sprite,0,var);
+	this->addChild(sprite,0,var);
 	_type = var;
 }
 

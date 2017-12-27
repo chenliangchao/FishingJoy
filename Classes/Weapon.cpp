@@ -22,15 +22,16 @@ bool Weapon::init(CannonType type)
 	do
 	{
 		CC_BREAK_IF(!CCNode::init());
+		
 		_cannon = Cannon::create(type);
 		CC_BREAK_IF(!_cannon);
-		addChild(_cannon, 1);
+		this->addChild(_cannon, 1);
 		
 		_bullets = CCArray::createWithCapacity(BULLET_COUNT);
 		CC_BREAK_IF(!_bullets);
 		CC_SAFE_RETAIN(_bullets);
 		
-		_fishNets=CCArray::createWithCapacity(BULLET_COUNT);
+		_fishNets = CCArray::createWithCapacity(BULLET_COUNT);
 		CC_BREAK_IF(!_fishNets);
 		CC_SAFE_RETAIN(_fishNets);
 
@@ -42,18 +43,18 @@ bool Weapon::init(CannonType type)
 		{
 			Bullet* bullet = Bullet::create();
 			_bullets->addObject(bullet);
-			addChild(bullet);
+			this->addChild(bullet);
 			bullet->setVisible(false);
 			
 			FishNet* fishNet = FishNet::create();
 			_fishNets->addObject(fishNet);
-			addChild(fishNet);
+			this->addChild(fishNet);
 			fishNet->setVisible(false);
 			bullet->setUserObject(fishNet);
 
 			CCParticleSystemQuad* particle = CCParticleSystemQuad::create("yuwanglizi.plist");
 			particle->stopSystem();
-			addChild(particle);
+			this->addChild(particle);
 			_particils->addObject(particle);
 			fishNet->setUserObject(particle);
 		}

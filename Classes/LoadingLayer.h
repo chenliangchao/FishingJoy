@@ -42,4 +42,7 @@ protected:
 
 	//预加载资源
 	void cacheInit(float delta);
+
+	//资源是否已经加载过，菜单切换到游戏主菜单场景时，再次载入直接进入
+	bool _isLoaded;
 };

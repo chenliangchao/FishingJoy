@@ -28,24 +28,74 @@ bool PersonalAudioEngine::init()
 	this->preloadEffect("bgm_fire.aif");
 	this->preloadEffect("bgm_net.mp3");
 
-	this->setBackgroundMusicVolume(FishingJoyData::sharedFishingJoyData()->getMusicVolume());
-	this->setEffectsVolume(FishingJoyData::sharedFishingJoyData()->getSoundVolume());
+	this->setBackgroundMusic((float)(FishingJoyData::sharedFishingJoyData()->getMusic()));
+	//this->setEffects((float)(FishingJoyData::sharedFishingJoyData()->getSound()));
 
 	return true;
 }
 
-void PersonalAudioEngine::setBackgroundMusicVolume(float volume)
+void PersonalAudioEngine::setBackgroundMusic(bool isOn)
 {
-	SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(volume);
-	FishingJoyData::sharedFishingJoyData()->setMusicVolume(volume);
+	//win32 cocos2d音量大小修改无效
+	//this->setBackgroundMusicVolume(isOn);
+	if(isOn)
+	{
+		this->pauseBackgroundMusic();
+	}
+	else
+	{
+		this->resumeBackgroundMusic();
+	}
+	FishingJoyData::sharedFishingJoyData()->setMusic(!isOn);
 }
-void PersonalAudioEngine::setEffectsVolume(float volume)
+
+//无法设置音效开关
+/*void PersonalAudioEngine::setEffects(bool isOn)
 {
-	SimpleAudioEngine::sharedEngine()->setEffectsVolume(volume);
-	FishingJoyData::sharedFishingJoyData()->setSoundVolume(volume);
+	//win32 cocos2d音量大小修改无效
+	//this->setEffectsVolume(isOn);
+	//暂停所有也无效
+	//this->pauseAllEffects();
+	
+	if(isOn)
+	{
+		//获取ID号进行暂停
+		this->pauseEffect(this->getNetSoundId());
+		this->pauseEffect(this->getFireSoundId());
+		this->pauseEffect(this->getBtnSoundId());
+	}
+	else
+	{
+		this->resumeEffect(this->getNetSoundId());
+		this->resumeEffect(this->getFireSoundId());
+		this->resumeEffect(this->getBtnSoundId());
+	}
+	FishingJoyData::sharedFishingJoyData()->setSound(!isOn);
 }
+*/
 
 void PersonalAudioEngine::purge()
 {
 
 }
+
+void PersonalAudioEngine::playEffects(EffectType type)
+{
+	switch(type)
+	{
+	case kEffectFishNet:
+		//返回一个ID号
+		this->setNetSoundId(playEffect("bgm_net.mp3"));
+		break;
+	case kEffectShoot:
+		this->setFireSoundId(playEffect("bgm_fire.aif"));
+		break;
+	case kEffectSwichCannon:
+		this->setBtnSoundId(playEffect("bgm_button.aif"));
+		break;
+	default:
+		break;
+	}
+}
+
+

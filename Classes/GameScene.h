@@ -29,10 +29,13 @@ public:
 
 	void pause();
 	void resume();
-	void sound();
 	void music();
+
+	//重设游戏，玩家变成初学者，金币恢复为默认值
 	void reset();
-	void transToMainMenu();
+
+	//回到主菜单
+	void toMainMenu();
 
 	//增加金币的数值
 	void scheduleTimeUp();

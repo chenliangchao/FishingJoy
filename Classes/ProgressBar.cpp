@@ -21,13 +21,13 @@ bool ProgressBar::init(ProgressDelegate* target, CCSprite *sprite)
 	this->setType(kCCProgressTimerTypeBar);
 
 	//设置起始位置
-	this->setMidpoint(CCPointMake(0, 0.5));
+	this->setMidpoint(ccp(0, 0.5));
 
 	//设置进度条速度
 	this->setSpeed(1.0f);
 
 	//设置结束位置
-	this->setBarChangeRate(CCPointMake(1, 0));
+	this->setBarChangeRate(ccp(1, 0));
 
 	return true;
 }
@@ -89,7 +89,7 @@ void ProgressBar::setBackground(CCNode* bg)
 	CCSize size = this->getSprite()->getContentSize();
 
 	//设置背景位置
-	_background->setPosition(CCPointMake(size.width*0.5, size.height*0.46));
+	_background->setPosition(ccp(size.width*0.5, size.height*0.46));
 
 	//将背景加入本节点中
 	this->addChild(_background, -1);
@@ -102,7 +102,7 @@ void ProgressBar::setForeground(CCNode* fg)
 
 	CCSize size = this->getSprite()->getContentSize();
 
-	_foreground->setPosition(CCPointMake(size.width*0.5, size.height*0.5));
+	_foreground->setPosition(ccp(size.width*0.5, size.height*0.5));
 
 	//设置为1，字体显示在背景之前
 	this->addChild(_foreground, 1);

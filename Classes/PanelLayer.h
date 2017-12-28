@@ -29,5 +29,11 @@ protected:
 
 	//CCLabelTTF用来显示当前的倒计时时间
 	CCLabelTTF* _scheduleLabel;
+
+	//面板
+	CCSprite* _steeringSprite;
+
+	//面板
+	CCSprite* _rightPanel;
 };
 

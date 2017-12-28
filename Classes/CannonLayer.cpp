@@ -19,7 +19,7 @@ bool CannonLayer::init()
 	// 炮台初始化类型设置为0，炮台类型1精灵图无法载出(资源已加载)
 
 	// 解决方法：
-	// 设置为非法的值，setType判断后设置为0, 可以载出类型1炮台
+	// 设置为大于7的非法值，setType判断大于7后设置为0, 可以载出类型1炮台
 	_weapon = Weapon::create(k_Cannon_Invalid);
 	this->addChild(_weapon,1);
 	CCSize winSize=CCDirector::sharedDirector()->getWinSize();

@@ -21,13 +21,13 @@ bool GameScene::init()
 		CC_BREAK_IF(!_fishLayer);
 		this->addChild(_fishLayer);
 
-		_cannonLayer = CannonLayer::create();
-		CC_BREAK_IF(!_cannonLayer);
-		this->addChild(_cannonLayer);
-
 		_panelLayer = PanelLayer::create();
 		CC_BREAK_IF(!_panelLayer);
 		this->addChild(_panelLayer);
+
+		_cannonLayer = CannonLayer::create();
+		CC_BREAK_IF(!_cannonLayer);
+		this->addChild(_cannonLayer);
 
 		_menuLayer = MenuLayer::create(); 
 		CC_BREAK_IF(!_menuLayer);
@@ -114,7 +114,7 @@ void GameScene::update(float delta)
 void GameScene::fishWillBeCaught(Fish* fish)
 {
 	float weaponPercents[k_Cannon_Count] = { 0.3f, 0.6f, 0.7f, 0.8f, 0.9f, 1.0f, 1.1f };
-	float fishPercents[	k_Fish_Type_Count] = { 1.0f, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f, 0.4f };
+	float fishPercents[	k_Fish_Type_Count] = { 1.0f, 0.9f, 0.8f, 0.7f, 0.6f, 0.5f, 0.4f, 0.3f, 0.2f, 0.1f };
 	int cannonType = _cannonLayer->getWeapon()->getCannonType();
 	int fishType = fish->getType();
 	if(CCRANDOM_0_1() < 1.1)

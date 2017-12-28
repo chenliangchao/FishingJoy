@@ -9,10 +9,10 @@ class ScheduleCountDown :
 {
 public:
 	//静态成员函数，创建ScheduleCountDown对象
-	static ScheduleCountDown* create(ScheduleCounterDelegate* target, int perimeter = 60, bool loop = true);
+	static ScheduleCountDown* create(ScheduleCounterDelegate* target, int perimeter = 65, bool loop = true);
 
 	//将参数保存到相应的数据成员中
-	bool init (ScheduleCounterDelegate* target, int perimeter = 60, bool loop = true);
+	bool init (ScheduleCounterDelegate* target, int perimeter = 65, bool loop = true);
 
 	CC_SYNTHESIZE(bool, _loop, Loop);
 

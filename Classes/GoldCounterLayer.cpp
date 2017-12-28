@@ -28,14 +28,14 @@ bool GoldCounterLayer::init(int number)
     for(int i = 0 ;i < NUM_COUNTER;i++){
         CCArray* array = CCArray::createWithCapacity(10);
 		float digitSize = textureSize.width/ 10;
-        for(int j = 0;j < 10;j++){
+        for(int j = 0; j < 10;j++){
             int x = digitSize * j;
-			CCSprite *sprite = CCSprite::createWithTexture(texture,CCRect(x,0,digitSize,textureSize.height));
+			CCSprite *sprite = CCSprite::createWithTexture(texture, CCRect(x, 0, digitSize, textureSize.height));
 			array->addObject(sprite);
         }
         Counter* counter = Counter::create(array);
 		addChild(counter,0,i);
-        counter->setPosition(i * digitSize,0);
+        counter->setPosition(i * (digitSize+10), 0);
     }
     setNumber(number);
     return true;

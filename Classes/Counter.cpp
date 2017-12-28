@@ -4,7 +4,8 @@ enum{
 };
 Counter* Counter::create(CCArray* presenters, int digit/* = 0 */)
 {
-	CCAssert(digit>=0 && digit<=10, "金币为0-9");
+	//中文不支持 需要为偶数个中文或者在中文后加 . 
+	CCAssert(digit>=0 && digit<=10, "金币为0-9之间的数字.");
     Counter *counter = new Counter;
 	if (counter && counter->init(presenters,digit) )
 	{   
@@ -28,11 +29,11 @@ bool Counter::init(CCArray* presenters, int digit/* = 0 */)
 
 	CCObject *obj = NULL;
 	int i = 0;
-	CCARRAY_FOREACH(presenters,obj)
+	CCARRAY_FOREACH(presenters, obj)
 	{
 		CCNode *node = (CCNode *)obj;
 		_presenters->addChild(node,0,i);
-		node->setPosition(ccp(0,node->getContentSize().height * i));
+		node->setPosition(ccp(0, node->getContentSize().height * i));
 		i++;
 	}
     this->addChild(_presenters);

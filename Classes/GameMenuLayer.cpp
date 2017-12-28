@@ -29,7 +29,7 @@ bool GameMenuLayer::init()
 		CCSprite* titleSprite = CCSprite::create("main_ui_title_cn-ipadhd.png");
 		CC_BREAK_IF(!titleSprite);
 		this->addChild(titleSprite);
-		titleSprite->setPosition(ccp(winSize.width/2, winSize.height * 0.75));
+		titleSprite->setPosition(ccp(winSize.width/2, winSize.height * 0.7));
 		this->createMenu();
 		return true;
 	} while (0);
@@ -82,7 +82,7 @@ void GameMenuLayer::createMenu(void)
 	CCMenu* menu = CCMenu::create(startMenuItem, sceneMenuItem, NULL);
 	this->addChild(menu);
 	CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-	menu->setPosition(ccp(winSize.width / 2, winSize.height * 0.4));
+	menu->setPosition(ccp(winSize.width / 2, winSize.height * 0.3));
 	menu->alignItemsVerticallyWithPadding(50);
 }
 

@@ -15,31 +15,32 @@ bool MenuLayer::init()
 
 void MenuLayer::createBackground()
 {
-	CCLayerColor* colorBackground = CCLayerColor::create(ccc4(0, 0, 0, 128));
+	//RGBA 255为不透明， 范围0-255，越大颜色越深
+	CCLayerColor* colorBackground = CCLayerColor::create(ccc4(0, 0, 0, 170));
 	this->addChild(colorBackground);
 }
 
 void MenuLayer::createMenu()
 {
-	int fontSize = 50;
+	int fontSize = 60;
 	CCString* fontName = CCString::create("Thonburi");
 
-	CCMenuItemLabel* resume = CCMenuItemLabel::create(CCLabelTTF::create("resume", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::resume));
+	CCMenuItemLabel* resume = CCMenuItemLabel::create(CCLabelTTF::create("继续游戏", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::resume));
 
-	CCMenuItemLabel* mainMenu = CCMenuItemLabel::create(CCLabelTTF::create("Main Menu", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::toMainMenu));
+	CCMenuItemLabel* mainMenu = CCMenuItemLabel::create(CCLabelTTF::create("回主菜单.", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::toMainMenu));
 
-	//CCMenuItemLabel* soundOn = CCMenuItemLabel::create(CCLabelTTF::create("Sound On", fontName->getCString(), fontSize));
-	//CCMenuItemLabel* soundOff = CCMenuItemLabel::create(CCLabelTTF::create("Sound Off", fontName->getCString(), fontSize));
+	//CCMenuItemLabel* soundOn = CCMenuItemLabel::create(CCLabelTTF::create("音效开.", fontName->getCString(), fontSize));
+	//CCMenuItemLabel* soundOff = CCMenuItemLabel::create(CCLabelTTF::create("音效关.", fontName->getCString(), fontSize));
 	//_sound = CCMenuItemToggle::createWithTarget(this, menu_selector(MenuLayer::sound),  soundOff, soundOn, NULL);
 
-	CCMenuItemLabel* musicOn = CCMenuItemLabel::create(CCLabelTTF::create("Music On", fontName->getCString(), fontSize));
-	CCMenuItemLabel* musicOff = CCMenuItemLabel::create(CCLabelTTF::create("Music Off", fontName->getCString(), fontSize));
+	CCMenuItemLabel* musicOn = CCMenuItemLabel::create(CCLabelTTF::create("音乐开", fontName->getCString(), fontSize));
+	CCMenuItemLabel* musicOff = CCMenuItemLabel::create(CCLabelTTF::create("音乐关闭", fontName->getCString(), fontSize));
 	_music = CCMenuItemToggle::createWithTarget(this, menu_selector(MenuLayer::music), musicOff, musicOn, NULL);
 
-	CCMenuItemLabel* reset = CCMenuItemLabel::create(CCLabelTTF::create("Reset", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::reset));
+	CCMenuItemLabel* reset = CCMenuItemLabel::create(CCLabelTTF::create("重置游戏", fontName->getCString(), fontSize), this, menu_selector(MenuLayer::reset));
 
 	CCMenu* menu = CCMenu::create(resume, mainMenu, /*_sound,*/ _music, reset, NULL);
-	menu->alignItemsVerticallyWithPadding(10);
+	menu->alignItemsVerticallyWithPadding(20);
 	this->addChild(menu);
 }
 
